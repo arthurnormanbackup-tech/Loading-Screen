@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>weird loading</title>
+    <style>
+        body { 
+            font-family: system-ui; 
+            background: #111; 
+            color: #ccc; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0;
+        }
+        .spinner { 
+            width: 50px; 
+            height: 50px; 
+            border: 5px solid #333; 
+            border-top: 5px solid #aaa; 
+            border-radius: 50%; 
+            animation: spin 1s linear infinite; 
+            margin-bottom: 20px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .fact { 
+            max-width: 400px; 
+            text-align: center; 
+            font-size: 1.1em; 
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="spinner"></div>
+    <h2>Loading...</h2>
+    <p class="fact" id="fact">Waiting for something weird...</p>
+
+    <script>
+        async function getRandomFact() {
+            try {
+                const res = await fetch("https://en.wikipedia.org/api/rest_v1/page/random/summary");
+                const data = await res.json();
+                document.getElementById("fact").textContent = data.extract;
+            } catch (e) {
+                document.getElementById("fact").textContent = "Failed to fetch something weird...";
+            }
+        }
+        
+        getRandomFact();
+    </script>
+</body>
+</html>
+setInterval(getRandomFact, 10000);
