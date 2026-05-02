@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>weird loading</title>
+    <title>Tip loading</title>
     <style>
         body { 
             font-family: system-ui; 
@@ -36,7 +36,7 @@
 <body>
     <div class="spinner"></div>
     <h2>Loading...</h2>
-    <p class="fact" id="fact">Waiting for something weird...</p>
+    <p class="fact" id="fact">Fetching your Tip...</p>
 
     <script>
         async function getRandomFact() {
@@ -49,8 +49,8 @@
             }
         }
         
-        getRandomFact();
+       getRandomFact();
+setInterval(getRandomFact, 10000);
     </script>
 </body>
 </html>
-setInterval(getRandomFact, 10000);
